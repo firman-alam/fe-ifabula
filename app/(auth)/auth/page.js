@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation'
 import { useSignInMutation, useSignUpMutation } from '@/store/api/userApi'
 import { AuthContext } from '@/utils/AuthContext'
 import Cookies from 'js-cookie'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Page = () => {
   const router = useRouter()
   const [user, setUser] = useState(false)
-  const [consoleMessage, setConsoleMessage] = useState('')
 
   const [signIn] = useSignInMutation()
   const [signUp] = useSignUpMutation()
@@ -29,23 +30,21 @@ const Page = () => {
     signUp(data)
       .unwrap()
       .then((data) => {
-        if (data.status === true) {
-          setConsoleMessage('User registered successfully')
+        if (data.status) {
+          toast.success('Sukses registrasi user')
           reset()
 
           setTimeout(() => {
             setUser(true)
-            setConsoleMessage('')
           }, 3000)
         } else if (data.status === false) {
           reset()
-          setConsoleMessage('Failed to register')
+          toast.error('Gagal registrasi user')
         }
       })
       .catch((error) => {
-        console.log(error)
         reset()
-        setConsoleMessage('Something went wrong')
+        toast.error(error.data.message)
       })
   }
 
@@ -53,20 +52,20 @@ const Page = () => {
     signIn(data)
       .unwrap()
       .then((data) => {
-        if (data.status === true) {
-          setConsoleMessage(`Welcome ${data.user.email}`)
+        if (data.status) {
+          toast.success(`Selamat datang, ${data.user.email}`)
           reset()
           Cookies.set('token', data.token)
           signin(data.user)
           router.push('/books')
         } else if (data.status === false) {
           reset()
-          setConsoleMessage('Failed to find the account')
+          toast.error(data.message)
         }
       })
       .catch((error) => {
         reset()
-        setConsoleMessage('Something went wrong')
+        toast.error(error.data.message)
       })
   }
 
@@ -125,7 +124,6 @@ const Page = () => {
               </span>
             </p>
           </form>
-          <p className='mt-4'>{consoleMessage}</p>
         </div>
         <div className='border-r-2 border-black h-screen' />
         <div className='w-1/2 text-center bg-yellow-fir flex flex-col justify-center'>
@@ -198,14 +196,17 @@ const Page = () => {
               </span>
             </p>
           </form>
-
-          <p className='mt-4'>{consoleMessage}</p>
         </div>
       </section>
     )
   }
 
-  return <div>{user ? <SignIn /> : <SignUp />}</div>
+  return (
+    <div>
+      <ToastContainer />
+      {user ? <SignIn /> : <SignUp />}
+    </div>
+  )
 }
 
 export default Page

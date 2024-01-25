@@ -10,6 +10,8 @@ import { AuthContext } from '@/utils/AuthContext'
 import formatDate from '@/utils/formatDate'
 import Image from 'next/image'
 import { useContext } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Books = () => {
   const { getUser } = useContext(AuthContext)
@@ -23,14 +25,32 @@ const Books = () => {
   const handleBorrow = (book_id) => {
     borrowBook({ user_id: user._id, book_id: book_id })
       .unwrap()
-      .then((payload) => console.log(payload))
-      .catch((err) => console.error(err))
+      .then((payload) => {
+        if (payload.status) {
+          toast.success('Book borrowed successfully!')
+        } else {
+          toast.error(
+            "Sorry, you can't borrow this book. Return the book that you already borrowed first."
+          )
+        }
+      })
+      .catch((err) =>
+        toast.error(
+          "Sorry, you can't borrow this book. Return the book that you already borrowed first."
+        )
+      )
   }
 
   const handleReturn = (book_id) => {
     returnBook({ user_id: user._id, book_id: book_id })
       .unwrap()
-      .then((payload) => console.log(payload))
+      .then((payload) => {
+        if (payload.status) {
+          toast.success('Book returned successfully!')
+        } else {
+          toast.error(payload.message)
+        }
+      })
       .catch((err) => console.error(err))
   }
 
@@ -44,6 +64,7 @@ const Books = () => {
 
       {isAuth && (
         <>
+          <ToastContainer />
           <section className='blue_header h-screen'>
             <p className='text-center text-xl font-medium'>Dashboard</p>
 
