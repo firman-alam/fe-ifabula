@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Frontend Aplikasi Perpustakaan Ifabula
 
-## Getting Started
+## Tech Stack
 
-First, run the development server:
+- NextJs 14
+- Redux Toolkit
+- React-hook-form
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Run
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Git clone
+- npm install
+- Build: `npm run build`
+- Start: `npm run start`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Make sure Node.js and npm are installed.
+- Run `npm install` to install dependencies.
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+- Run `npm run build` to build the application.
+- Include any additional build steps here.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Start the application using `npm run start`.
+- Access the application in your browser.
 
-## Deploy on Vercel
+### Configuration
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Configuration options can be set in the `.env` file.
+- Provide instructions for configuring environment variables.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Development
+
+- To run in development mode, use `npm run dev`.
+- If you'd like to contribute, fork the repository and submit a pull request.
+
+### Troubleshooting
+
+- If you encounter issues, check this section for common problems and solutions.
+
+### License
+
+This project is licensed under the [Your License Name] - see the [LICENSE.md](LICENSE.md) file for details.

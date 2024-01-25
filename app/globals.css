@@ -129,7 +129,28 @@
 }
 
 .red_btn {
-  @apply rounded border-black bg-red-fir py-1.5 px-5 text-black font-medium transition-all border-2 hover:bg-white hover:border-2 hover:text-black text-center text-sm flex items-center justify-center;
+  @apply rounded 
+  border-black 
+  bg-red-fir 
+  py-1.5 
+  px-5 
+  text-black 
+  font-medium 
+  transition-all 
+  border-2 
+  hover:bg-white 
+  hover:border-2 
+  hover:text-black 
+  text-center 
+  text-sm flex 
+  items-center 
+  justify-center
+  shadow-lg; /* Or use the desired shadow intensity class */
+
+  /* Custom box shadow */
+  --tw-shadow: -3px 4px 0px 1px rgba(0, 0, 0, 1);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .yellow_btn {

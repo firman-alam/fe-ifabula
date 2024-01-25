@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from 'react'
 
 export const AuthContext = createContext()
 
@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user_id")
+    const storedUser = localStorage.getItem('user')
     if (storedUser) {
       setUser(JSON.parse(storedUser))
     }
@@ -16,12 +16,12 @@ export const AuthProvider = ({ children }) => {
 
   const signin = (userData) => {
     setUser(userData)
-    localStorage.setItem("user_id", JSON.stringify(userData))
+    localStorage.setItem('user', JSON.stringify(userData))
   }
 
   const signout = () => {
     setUser(null)
-    localStorage.removeItem("user_id")
+    localStorage.removeItem('user')
   }
 
   const getUser = () => {
